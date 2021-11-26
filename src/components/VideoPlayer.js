@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { videosSelector } from '../redux/youtubeSlice';
 
 function VideoPlayer() {
-    const video = useSelector(videosSelector).items[0];
+    const videos = useSelector(videosSelector);
+	const video = videos && videos.items[0]
 
     return (
         <Box>
