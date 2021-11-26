@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { YouTube } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { fetchVideosAsync } from '../redux/youtubeSlice';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -49,9 +51,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const [queryTerm, setQueryTerm] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(fetchVideosAsync(queryTerm));
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{backgroundColor: "#f00 !important"}}>
+            <AppBar
+                position="static"
+                sx={{ backgroundColor: '#f00 !important' }}
+            >
                 <Toolbar>
                     <YouTube fontSize="large" />
                     <Typography
@@ -66,10 +79,14 @@ export default function Navbar() {
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+                        <form onSubmit={handleSubmit}>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                                value={queryTerm}
+                                onChange={(e) => setQueryTerm(e.target.value)}
+                            />
+                        </form>
                     </Search>
                 </Toolbar>
             </AppBar>
