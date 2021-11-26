@@ -3,13 +3,15 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { videosSelector } from '../redux/youtubeSlice';
+import { useStyles } from '../styles/styles';
 
 function VideoPlayer() {
+    const classes = useStyles();
     const videos = useSelector(videosSelector);
-	const video = videos && videos.items[0]
+    const video = videos && videos.items[0];
 
     return (
-        <Box>
+        <Box className={classes.videoPlayer}>
             {video && (
                 <Box>
                     <iframe
@@ -21,9 +23,13 @@ function VideoPlayer() {
                     ></iframe>
 
                     <Paper>
-						<Typography variant="h6">{video.snippet.title}</Typography>
-						<Typography variant="p">{video.snippet.description}</Typography>
-					</Paper>
+                        <Typography variant="h6">
+                            {video.snippet.title}
+                        </Typography>
+                        <Typography variant="p">
+                            {video.snippet.description}
+                        </Typography>
+                    </Paper>
                 </Box>
             )}
         </Box>
