@@ -18,8 +18,8 @@ function VideoPlayer() {
                         title={video.etag}
                         src={`https://youtube.com/embed/${video.id.videoId}`}
                         frameBorder="0"
-                        width="600"
-                        height="500"
+                        width="500"
+                        height="400"
                     ></iframe>
 
                     <Paper>
