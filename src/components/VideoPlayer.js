@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { videosSelector } from '../redux/youtubeSlice';
 import { useStyles } from '../styles/styles';
 
+
 function VideoPlayer() {
     const classes = useStyles();
     const videos = useSelector(videosSelector);
@@ -18,11 +19,11 @@ function VideoPlayer() {
                         title={video.etag}
                         src={`https://youtube.com/embed/${video.id.videoId}`}
                         frameBorder="0"
-                        width="500"
+                        width="100%"
                         height="400"
                     ></iframe>
 
-                    <Paper>
+                    <Paper elevation={8} className={classes.videoTitle}>
                         <Typography variant="h6">
                             {video.snippet.title}
                         </Typography>
