@@ -23,6 +23,7 @@ function VideoList() {
                         <Paper
                             className={classes.listItem}
                             key={video.etag}
+                            elevation={8}
                             onClick={() => {
                                 dispatch(fetchVideosAsync(video.snippet.title));
                             }}
@@ -31,7 +32,9 @@ function VideoList() {
                                 src={video.snippet.thumbnails.default.url}
                                 alt="asd"
                             />
-                            <Typography>{video.snippet.title}</Typography>
+                            <Typography sx={{ marginLeft: '1rem' }}>
+                                {video.snippet.title}
+                            </Typography>
                         </Paper>
                     ))}
             </Stack>
