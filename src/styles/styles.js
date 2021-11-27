@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => {
+    console.log(theme);
     return {
         container: {
             display: 'flex',
@@ -10,21 +11,25 @@ export const useStyles = makeStyles((theme) => {
         },
         videoPlayer: {
             width: '45%',
-            // [theme.breakpoints.down('md')]: {
-            //     width: '100%',
-            // },
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+              },
         },
         listContainer: {
             width: '40%',
-            // [theme.breakpoints.down('md')]: {
-            //     width: '100%',
-            // },
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+              },
         },
         listItem: {
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
             padding: '1rem',
+            cursor: 'pointer',
+            '&:hover': {
+                textDecoration: 'underline',
+            },
         },
     };
 });
