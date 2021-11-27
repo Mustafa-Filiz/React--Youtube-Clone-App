@@ -61,7 +61,7 @@ export default function Navbar() {
 
     useEffect(() => {
         dispatch(fetchVideosAsync(queryTerm));
-    }, [dispatch, queryTerm])
+    }, [dispatch])
 
     return (
         <Box sx={{ flexGrow: 1 }}>
