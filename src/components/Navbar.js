@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -51,13 +51,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-    const [queryTerm, setQueryTerm] = useState('');
+    const [queryTerm, setQueryTerm] = useState('redux');
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(fetchVideosAsync(queryTerm));
     };
+
+    useEffect(() => {
+        dispatch(fetchVideosAsync(queryTerm));
+    }, [dispatch, queryTerm])
 
     return (
         <Box sx={{ flexGrow: 1 }}>
